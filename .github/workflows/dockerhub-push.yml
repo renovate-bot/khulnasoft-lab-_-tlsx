@@ -37,4 +37,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm
           push: true
-          tags: khulnasoft-lab/tlsx:latest,khulnasoft-lab/tlsx:${{ steps.meta.outputs.TAG }}
+          tags: khulnasoft/tlsx:latest,khulnasoft/tlsx:${{ steps.meta.outputs.TAG }}
