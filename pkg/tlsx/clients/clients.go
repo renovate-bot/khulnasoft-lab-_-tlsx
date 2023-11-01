@@ -20,12 +20,12 @@ import (
 
 	zx509 "github.com/zmap/zcrypto/x509"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	"github.com/khulnasoft-labs/goflags"
-	"github.com/khulnasoft-labs/gologger"
-	"github.com/khulnasoft-labs/retryablehttp-go"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
-	"github.com/khulnasoft-labs/tlsx/assets"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	"github.com/khulnasoft-lab/goflags"
+	"github.com/khulnasoft-lab/gologger"
+	"github.com/khulnasoft-lab/retryablehttp-go"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
+	"github.com/khulnasoft-lab/tlsx/assets"
 	ztls "github.com/zmap/zcrypto/tls"
 )
 

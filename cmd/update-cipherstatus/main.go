@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/khulnasoft-labs/gologger"
+	"github.com/khulnasoft-lab/gologger"
 )
 
 // stores ciphers with stats ex: "AES128-SHA256": "Weak"

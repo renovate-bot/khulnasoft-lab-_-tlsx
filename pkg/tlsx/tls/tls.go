@@ -10,13 +10,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	"github.com/khulnasoft-labs/gologger"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
-	iputil "github.com/khulnasoft-labs/utils/ip"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
-	"github.com/khulnasoft-labs/tlsx/pkg/output/stats"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	"github.com/khulnasoft-lab/gologger"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
+	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/rs/xid"
 )
 

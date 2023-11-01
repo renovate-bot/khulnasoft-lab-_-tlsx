@@ -1,8 +1,8 @@
 package ztls
 
 import (
-	errorutil "github.com/khulnasoft-labs/utils/errors"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/zmap/zcrypto/tls"
 	"github.com/zmap/zcrypto/x509"
 )

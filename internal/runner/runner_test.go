@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/projectdiscovery/dnsx/libs/dnsx"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/dnsx/libs/dnsx"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/stretchr/testify/require"
 )
 

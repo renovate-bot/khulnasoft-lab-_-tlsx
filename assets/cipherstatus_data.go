@@ -4,8 +4,8 @@ import (
 	_ "embed"
 	"encoding/json"
 
-	"github.com/khulnasoft-labs/gologger"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	"github.com/khulnasoft-lab/gologger"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 )
 
 //go:embed cipherstatus_data.json

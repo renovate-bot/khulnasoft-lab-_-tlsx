@@ -3,8 +3,8 @@ package openssl
 import (
 	"strings"
 
-	"github.com/khulnasoft-labs/gologger"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	"github.com/khulnasoft-lab/gologger"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 // AllCipherNames contains all ciphers supported by openssl

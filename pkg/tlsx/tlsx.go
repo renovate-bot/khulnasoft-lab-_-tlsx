@@ -3,16 +3,16 @@ package tlsx
 import (
 	"strconv"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	"github.com/khulnasoft-labs/gologger"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
-	sliceutil "github.com/khulnasoft-labs/utils/slice"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/auto"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/jarm"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/openssl"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/tls"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/ztls"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	"github.com/khulnasoft-lab/gologger"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/auto"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/jarm"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/tls"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls"
 )
 
 // Service is a service for tlsx module

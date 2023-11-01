@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/khulnasoft-labs/gologger"
+	"github.com/khulnasoft-lab/gologger"
 )
 
 // references:

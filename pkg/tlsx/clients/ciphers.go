@@ -3,7 +3,7 @@ package clients
 import (
 	"strings"
 
-	"github.com/khulnasoft-labs/tlsx/assets"
+	"github.com/khulnasoft-lab/tlsx/assets"
 )
 
 // CipherSecLevel

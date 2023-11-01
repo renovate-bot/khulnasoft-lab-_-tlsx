@@ -6,11 +6,11 @@
 
 <p align="center">
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-_red.svg"></a>
-<a href="https://goreportcard.com/badge/github.com/khulnasoft-labs/tlsx"><img src="https://goreportcard.com/badge/github.com/khulnasoft-labs/tlsx"></a>
-<a href="https://pkg.go.dev/github.com/khulnasoft-labs/tlsx/pkg/tlsx"><img src="https://img.shields.io/badge/go-reference-blue"></a>
-<a href="https://github.com/khulnasoft-labs/tlsx/releases"><img src="https://img.shields.io/github/release/khulnasoft-labs/tlsx"></a>
+<a href="https://goreportcard.com/badge/github.com/khulnasoft-lab/tlsx"><img src="https://goreportcard.com/badge/github.com/khulnasoft-lab/tlsx"></a>
+<a href="https://pkg.go.dev/github.com/khulnasoft-lab/tlsx/pkg/tlsx"><img src="https://img.shields.io/badge/go-reference-blue"></a>
+<a href="https://github.com/khulnasoft-lab/tlsx/releases"><img src="https://img.shields.io/github/release/khulnasoft-lab/tlsx"></a>
 <a href="https://twitter.com/pdiscoveryio"><img src="https://img.shields.io/twitter/follow/pdiscoveryio.svg?logo=twitter"></a>
-<a href="https://discord.gg/projectdiscovery"><img src="https://img.shields.io/discord/695645237418131507.svg?logo=discord"></a>
+<a href="https://discord.gg/khulnasoft-lab"><img src="https://img.shields.io/discord/695645237418131507.svg?logo=discord"></a>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
   <a href="#running-tlsx">Running tlsx</a> •
-  <a href="https://discord.gg/projectdiscovery">Join Discord</a>
+  <a href="https://discord.gg/khulnasoft-lab">Join Discord</a>
 </p>
 
 
@@ -43,10 +43,10 @@ A fast and configurable TLS grabber focused on TLS based **data collection and a
 
 ## Installation
 
-tlsx requires **Go 1.19** to install successfully. To install, just run the below command or download pre-compiled binary from [release page](https://github.com/khulnasoft-labs/tlsx/releases).
+tlsx requires **Go 1.19** to install successfully. To install, just run the below command or download pre-compiled binary from [release page](https://github.com/khulnasoft-lab/tlsx/releases).
 
 ```console
-go install github.com/khulnasoft-labs/tlsx/cmd/tlsx@latest
+go install github.com/khulnasoft-lab/tlsx/cmd/tlsx@latest
 ```
 
 ## Usage
@@ -206,7 +206,7 @@ $ echo 173.0.84.0/24 | tlsx
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -274,7 +274,7 @@ pointofsale-s.paypal.com
 pilot-payflowpro.paypal.com
 ```
 
-**subdomains** obtained from TLS certificates can be further piped to other PD tools for further inspection, here is an example piping tls subdomains to **[dnsx](https://github.com/projectdiscovery/dnsx)** to filter passive subdomains and passing to **[httpx](https://github.com/projectdiscovery/httpx)** to list hosts running active web services.
+**subdomains** obtained from TLS certificates can be further piped to other PD tools for further inspection, here is an example piping tls subdomains to **[dnsx](https://github.com/khulnasoft-lab/dnsx)** to filter passive subdomains and passing to **[httpx](https://github.com/khulnasoft-lab/httpx)** to list hosts running active web services.
 
 ```console
 $ echo 173.0.84.0/24 | tlsx -san -cn -silent -resp-only | dnsx -silent | httpx
@@ -286,7 +286,7 @@ $ echo 173.0.84.0/24 | tlsx -san -cn -silent -resp-only | dnsx -silent | httpx
 /_/ /_/\__/\__/ .___/_/|_|
              /_/              v1.2.2
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 Use with caution. You are responsible for your actions.
 Developers assume no liability and are not responsible for any misuse or damage.
@@ -341,7 +341,7 @@ $ tlsx -l hosts.txt -expired -self-signed -mismatched -revoked -untrusted
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -429,7 +429,7 @@ tlsx provides multiple modes to make TLS Connection -
 - `ztls` (**[zcrypto/tls](https://github.com/zmap/zcrypto)**)
 - `openssl` (**[openssl](https://github.com/openssl/openssl)**)
 
-Some pointers for the specific mode / library is highlighted in [linked discussions](https://github.com/khulnasoft-labs/tlsx/discussions/2), `auto` mode is supported to ensure the maximum coverage and scans for the hosts running older version of TLS by retrying the connection using `ztls` and `openssl` mode upon any connection error.
+Some pointers for the specific mode / library is highlighted in [linked discussions](https://github.com/khulnasoft-lab/tlsx/discussions/2), `auto` mode is supported to ensure the maximum coverage and scans for the hosts running older version of TLS by retrying the connection using `ztls` and `openssl` mode upon any connection error.
 
 An example of using `ztls` mode to scan website using old / outdated TLS version.
 
@@ -442,7 +442,7 @@ $ echo tls-v1-0.badssl.com | tlsx -port 1010 -sm ztls
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -475,7 +475,7 @@ $ tlsx -u example.com -pre-handshake
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -514,7 +514,7 @@ $ tlsx -u example.com -max-version tls10
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    projectdiscovery.io
+    khulnasoft-lab.io
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -523,7 +523,7 @@ example.com:443
 
 ### Custom Cipher
 
-Supported custom cipher can provided using `-cipher-input / -ci` flag, supported cipher list for each mode is available at [wiki page](https://github.com/khulnasoft-labs/tlsx/wiki/Ciphers).
+Supported custom cipher can provided using `-cipher-input / -ci` flag, supported cipher list for each mode is available at [wiki page](https://github.com/khulnasoft-lab/tlsx/wiki/Ciphers).
 
 ```console
 $ tlsx -u example.com -ci TLS_AES_256_GCM_SHA384 -cipher
@@ -545,9 +545,9 @@ This program optionally uses:
 
 <div align="center">
 
-tlsx is made with ❤️ by the [projectdiscovery](https://projectdiscovery.io) team and distributed under [MIT License](LICENSE).
+tlsx is made with ❤️ by the [khulnasoft-lab](https://khulnasoft-lab.io) team and distributed under [MIT License](LICENSE).
 
 
-<a href="https://discord.gg/projectdiscovery"><img src="https://raw.githubusercontent.com/projectdiscovery/nuclei-burp-plugin/main/static/join-discord.png" width="300" alt="Join Discord"></a>
+<a href="https://discord.gg/khulnasoft-lab"><img src="https://raw.githubusercontent.com/khulnasoft-lab/nuclei-burp-plugin/main/static/join-discord.png" width="300" alt="Join Discord"></a>
 
 </div>

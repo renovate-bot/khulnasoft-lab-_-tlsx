@@ -6,7 +6,7 @@ import (
 	"encoding/pem"
 	"fmt"
 
-	"github.com/khulnasoft-labs/gologger"
+	"github.com/khulnasoft-lab/gologger"
 )
 
 //go:embed root-certs.pem

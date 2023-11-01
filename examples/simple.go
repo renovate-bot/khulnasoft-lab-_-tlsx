@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 )
 
 func main() {
 	// setup tlsx client with options
-	// https://pkg.go.dev/github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients#Options
+	// https://pkg.go.dev/github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients#Options
 	opts := &clients.Options{
 		TLSVersion: true,
 		Retries:    3,

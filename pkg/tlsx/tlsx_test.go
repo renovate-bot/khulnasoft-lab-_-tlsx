@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	iputil "github.com/khulnasoft-labs/utils/ip"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/openssl"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 )
 
 func TestResolvedIP(t *testing.T) {

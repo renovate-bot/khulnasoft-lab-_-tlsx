@@ -3,11 +3,11 @@ package runner
 import (
 	"fmt"
 
-	"github.com/khulnasoft-labs/gologger"
-	"github.com/khulnasoft-labs/gologger/levels"
-	errorutils "github.com/khulnasoft-labs/utils/errors"
-	fileutil "github.com/khulnasoft-labs/utils/file"
-	updateutils "github.com/khulnasoft-labs/utils/update"
+	"github.com/khulnasoft-lab/gologger"
+	"github.com/khulnasoft-lab/gologger/levels"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
+	fileutil "github.com/khulnasoft-lab/utils/file"
+	updateutils "github.com/khulnasoft-lab/utils/update"
 )
 
 var banner = fmt.Sprintf(`  
@@ -60,7 +60,7 @@ func (r *Runner) validateOptions() error {
 // showBanner is used to show the banner to the user
 func showBanner() {
 	gologger.Print().Msgf("%s\n", banner)
-	gologger.Print().Msgf("\t\tprojectdiscovery.io\n\n")
+	gologger.Print().Msgf("\t\tkhulnasoft-lab.io\n\n")
 }
 
 // GetUpdateCallback returns a callback function that updates tlsx

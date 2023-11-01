@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/openssl"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 )
 
 func TestOpenssL(t *testing.T) {

@@ -4,12 +4,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/khulnasoft-labs/gologger"
-	errorutils "github.com/khulnasoft-labs/utils/errors"
-	"github.com/khulnasoft-labs/goflags"
-	"github.com/khulnasoft-labs/tlsx/internal/runner"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/openssl"
+	"github.com/khulnasoft-lab/gologger"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
+	"github.com/khulnasoft-lab/goflags"
+	"github.com/khulnasoft-lab/tlsx/internal/runner"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 )
 
 var (

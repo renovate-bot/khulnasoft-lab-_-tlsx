@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
-	iputil "github.com/khulnasoft-labs/utils/ip"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	iputil "github.com/khulnasoft-lab/utils/ip"
 )
 
 func Convertx509toResponse(options *Options, hostname string, cert *x509.Certificate, showcert bool) *CertificateResponse {

@@ -9,9 +9,9 @@ import (
 	"sync"
 
 	jsoniter "github.com/json-iterator/go"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 	"github.com/logrusorgru/aurora"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"golang.org/x/exp/maps"
 )
 

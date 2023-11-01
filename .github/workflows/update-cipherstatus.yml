@@ -20,7 +20,7 @@ jobs:
 
       - name: install update-cipherstatus
         run: |
-          go install github.com/khulnasoft-labs/tlsx/cmd/update-cipherstatus
+          go install github.com/khulnasoft-lab/tlsx/cmd/update-cipherstatus
 
       - name: update cipherstatus changes
         run: |

@@ -12,7 +12,7 @@ import (
 	"os/exec"
 	"strings"
 
-	errorutils "github.com/khulnasoft-labs/utils/errors"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
 )
 
 const commadFormat string = "Command: %v"

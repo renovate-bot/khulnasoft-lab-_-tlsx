@@ -20,7 +20,7 @@ jobs:
 
       - name: install update-rootcerts
         run: |
-          go install github.com/khulnasoft-labs/tlsx/cmd/update-rootcerts
+          go install github.com/khulnasoft-lab/tlsx/cmd/update-rootcerts
 
       - name: update root certificate changes
         run: |

@@ -3,7 +3,7 @@ package tls
 import (
 	"crypto/tls"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 var (

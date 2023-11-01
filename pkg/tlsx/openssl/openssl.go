@@ -7,13 +7,13 @@ import (
 	"net"
 	"time"
 
-	"github.com/khulnasoft-labs/fastdialer/fastdialer"
-	"github.com/khulnasoft-labs/gologger"
-	errorutils "github.com/khulnasoft-labs/utils/errors"
-	iputil "github.com/khulnasoft-labs/utils/ip"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
-	"github.com/khulnasoft-labs/tlsx/pkg/output/stats"
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/fastdialer/fastdialer"
+	"github.com/khulnasoft-lab/gologger"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
+	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 )
 
 // Client is a TLS grabbing client using crypto/tls
@@ -182,7 +182,7 @@ func (c *Client) getOpenSSLopts(hostname, ip, port string, options clients.Conne
 		}
 		opensslOptions.Cipher = ciphers
 		if opensslOptions.ServerName == "" {
-			// If there are multiple VHOST openssl returns errors unless hostname is specified (ex: projectdiscovery.io)
+			// If there are multiple VHOST openssl returns errors unless hostname is specified (ex: khulnasoft-lab.io)
 			opensslOptions.ServerName = hostname
 		}
 	} else {

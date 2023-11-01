@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/khulnasoft-labs/gologger"
-	errorutils "github.com/khulnasoft-labs/utils/errors"
+	"github.com/khulnasoft-lab/gologger"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
 )
 
 var (

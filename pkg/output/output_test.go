@@ -3,7 +3,7 @@ package output
 import (
 	"testing"
 
-	"github.com/khulnasoft-labs/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/stretchr/testify/require"
 )
 
