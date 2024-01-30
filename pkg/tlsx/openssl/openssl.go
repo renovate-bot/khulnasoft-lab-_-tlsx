@@ -182,7 +182,7 @@ func (c *Client) getOpenSSLopts(hostname, ip, port string, options clients.Conne
 		}
 		opensslOptions.Cipher = ciphers
 		if opensslOptions.ServerName == "" {
-			// If there are multiple VHOST openssl returns errors unless hostname is specified (ex: khulnasoft-lab.io)
+			// If there are multiple VHOST openssl returns errors unless hostname is specified (ex: khulnasoft.com)
 			opensslOptions.ServerName = hostname
 		}
 	} else {

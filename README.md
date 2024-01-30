@@ -9,7 +9,7 @@
 <a href="https://goreportcard.com/badge/github.com/khulnasoft-lab/tlsx"><img src="https://goreportcard.com/badge/github.com/khulnasoft-lab/tlsx"></a>
 <a href="https://pkg.go.dev/github.com/khulnasoft-lab/tlsx/pkg/tlsx"><img src="https://img.shields.io/badge/go-reference-blue"></a>
 <a href="https://github.com/khulnasoft-lab/tlsx/releases"><img src="https://img.shields.io/github/release/khulnasoft-lab/tlsx"></a>
-<a href="https://twitter.com/pdiscoveryio"><img src="https://img.shields.io/twitter/follow/pdiscoveryio.svg?logo=twitter"></a>
+<a href="https://twitter.com/khulnasoft"><img src="https://img.shields.io/twitter/follow/khulnasoft.svg?logo=twitter"></a>
 <a href="https://discord.gg/khulnasoft-lab"><img src="https://img.shields.io/discord/695645237418131507.svg?logo=discord"></a>
 </p>
 
@@ -208,7 +208,7 @@ $ echo 173.0.84.0/24 | tlsx
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -288,7 +288,7 @@ $ echo 173.0.84.0/24 | tlsx -san -cn -silent -resp-only | dnsx -silent | httpx
 /_/ /_/\__/\__/ .___/_/|_|
              /_/              v1.2.2
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 Use with caution. You are responsible for your actions.
 Developers assume no liability and are not responsible for any misuse or damage.
@@ -343,7 +343,7 @@ $ tlsx -l hosts.txt -expired -self-signed -mismatched -revoked -untrusted
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -444,7 +444,7 @@ $ echo tls-v1-0.badssl.com | tlsx -port 1010 -sm ztls
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -477,7 +477,7 @@ $ tlsx -u example.com -pre-handshake
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -516,7 +516,7 @@ $ tlsx -u example.com -max-version tls10
    | | | |__\__ \>  < 
    |_| |____|___/_/\_\  v0.0.1
 
-    khulnasoft-lab.io
+    khulnasoft.com
 
 [WRN] Use with caution. You are responsible for your actions.
 [WRN] Developers assume no liability and are not responsible for any misuse or damage.
@@ -547,7 +547,7 @@ This program optionally uses:
 
 <div align="center">
 
-tlsx is made with ❤️ by the [khulnasoft-lab](https://khulnasoft-lab.io) team and distributed under [MIT License](LICENSE).
+tlsx is made with ❤️ by the [khulnasoft-lab](https://khulnasoft.com) team and distributed under [MIT License](LICENSE).
 
 
 <a href="https://discord.gg/khulnasoft-lab"><img src="https://raw.githubusercontent.com/khulnasoft-lab/nuclei-burp-plugin/main/static/join-discord.png" width="300" alt="Join Discord"></a>

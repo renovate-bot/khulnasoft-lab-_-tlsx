@@ -28,7 +28,7 @@ func TestResponse(t *testing.T) {
 		ErrContains string // errors returned by openssl
 		cert        *x509.Certificate
 	}{
-		// {"s_client -connect khulnasoft-lab.io:443 -tls1", "handshake failure", nil},
+		// {"s_client -connect khulnasoft.com:443 -tls1", "handshake failure", nil},
 		{"s_client -connect scanme.sh:443", "", &x509.Certificate{Issuer: pkix.Name{Organization: []string{"pd"}, CommonName: "scanme"}}},
 	}
 
@@ -54,7 +54,7 @@ func TestResponse(t *testing.T) {
 
 func TestCertChain(t *testing.T) {
 	opts := Options{
-		Address:   "khulnasoft-lab.io:443",
+		Address:   "khulnasoft.com:443",
 		CertChain: true,
 		Protocol:  TLSv1_3,
 	}
