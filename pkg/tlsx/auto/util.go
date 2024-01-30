@@ -1,10 +1,10 @@
 package auto
 
 import (
-	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/tls"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
 )
 
 var (

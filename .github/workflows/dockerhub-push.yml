@@ -9,10 +9,10 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-16-cores
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Get Github tag
         id: meta
@@ -26,15 +26,15 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
-        uses: docker/login-action@v3 
+        uses: docker/login-action@v2 
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm
           push: true
-          tags: khulnasoft/tlsx:latest,khulnasoft/tlsx:${{ steps.meta.outputs.TAG }}
+          tags: khulnasoft-lab/tlsx:latest,khulnasoft-lab/tlsx:${{ steps.meta.outputs.TAG }}

@@ -6,17 +6,19 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"errors"
 	"net"
 	"os"
 	"time"
 
 	"github.com/khulnasoft-lab/fastdialer/fastdialer"
 	"github.com/khulnasoft-lab/gologger"
+	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	"github.com/khulnasoft-lab/utils/conn/connpool"
 	errorutil "github.com/khulnasoft-lab/utils/errors"
 	iputil "github.com/khulnasoft-lab/utils/ip"
 	stringsutil "github.com/khulnasoft-lab/utils/strings"
-	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
-	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/rs/xid"
 )
 
@@ -164,7 +166,7 @@ func (c *Client) ConnectWithOptions(hostname, ip, port string, options clients.C
 
 func (c *Client) EnumerateCiphers(hostname, ip, port string, options clients.ConnectOptions) ([]string, error) {
 	// filter ciphers based on given seclevel
-	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel)
+	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel...)
 
 	if options.VersionTLS == "tls13" {
 		return nil, errorutil.NewWithTag("ctls", "cipher enum not supported in ctls with tls1.3")
@@ -178,9 +180,35 @@ func (c *Client) EnumerateCiphers(hostname, ip, port string, options clients.Con
 	}
 	gologger.Debug().Label("ctls").Msgf("Starting cipher enumeration with %v ciphers and version %v", len(toEnumerate), options.VersionTLS)
 
+	// get network address
+	var address string
+	if iputil.IsIP(ip) && (c.options.ScanAllIPs || len(c.options.IPVersion) > 0) {
+		address = net.JoinHostPort(ip, port)
+	} else {
+		address = net.JoinHostPort(hostname, port)
+	}
+
+	threads := c.options.CipherConcurrency
+	if len(toEnumerate) < threads {
+		threads = len(toEnumerate)
+	}
+
+	// setup connection pool
+	pool, err := connpool.NewOneTimePool(context.Background(), address, threads)
+	if err != nil {
+		return enumeratedCiphers, errorutil.NewWithErr(err).Msgf("failed to setup connection pool")
+	}
+	pool.Dialer = c.dialer
+	go func() {
+		if err := pool.Run(); err != nil && !errors.Is(err, context.Canceled) {
+			gologger.Error().Msgf("tlsx: ctls: failed to run connection pool: %v", err)
+		}
+	}()
+	defer pool.Close()
+
 	for _, v := range toEnumerate {
 		// create new baseConn and pass it to tlsclient
-		baseConn, err := clients.GetConn(context.TODO(), hostname, ip, port, c.options)
+		baseConn, err := pool.Acquire(context.Background())
 		if err != nil {
 			return enumeratedCiphers, errorutil.NewWithErr(err).WithTag("ctls")
 		}

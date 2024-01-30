@@ -9,23 +9,23 @@ import (
 	"sync"
 	"time"
 
+	"github.com/miekg/dns"
+	"github.com/khulnasoft-lab/dnsx/libs/dnsx"
 	"github.com/khulnasoft-lab/fastdialer/fastdialer"
 	"github.com/khulnasoft-lab/gologger"
 	"github.com/khulnasoft-lab/gologger/formatter"
 	"github.com/khulnasoft-lab/gologger/levels"
 	"github.com/khulnasoft-lab/mapcidr"
 	"github.com/khulnasoft-lab/mapcidr/asn"
-	errorutil "github.com/khulnasoft-lab/utils/errors"
-	iputil "github.com/khulnasoft-lab/utils/ip"
-	sliceutil "github.com/khulnasoft-lab/utils/slice"
-	updateutils "github.com/khulnasoft-lab/utils/update"
-	"github.com/miekg/dns"
-	"github.com/khulnasoft-lab/dnsx/libs/dnsx"
 	"github.com/khulnasoft-lab/tlsx/pkg/output"
 	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
+	updateutils "github.com/khulnasoft-lab/utils/update"
 )
 
 // Runner is a client for running the enumeration process
@@ -107,6 +107,9 @@ func New(options *clients.Options) (*Runner, error) {
 		return nil, errorutil.NewWithErr(err).Msgf("could not create output writer")
 	}
 	runner.outputWriter = outputWriter
+	if options.TlsCiphersEnum && !options.Silent {
+		gologger.Info().Msgf("Enumerating TLS Ciphers in %s mode", options.ScanMode)
+	}
 
 	return runner, nil
 }
@@ -180,10 +183,14 @@ func (r *Runner) processInputElementWorker(inputs chan taskInput, wg *sync.WaitG
 		if err != nil {
 			gologger.Warning().Msgf("Could not connect input %s: %s", task.Address(), err)
 		}
-		if response != nil {
-			if err := r.outputWriter.Write(response); err != nil {
-				gologger.Warning().Msgf("Could not write output %s: %s", task.Address(), err)
-			}
+
+		if response == nil {
+			continue
+		}
+
+		if err := r.outputWriter.Write(response); err != nil {
+			gologger.Warning().Msgf("Could not write output %s: %s", task.Address(), err)
+			continue
 		}
 	}
 }

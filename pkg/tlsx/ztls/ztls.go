@@ -4,6 +4,7 @@ package ztls
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net"
 	"os"
@@ -11,12 +12,13 @@ import (
 
 	"github.com/khulnasoft-lab/fastdialer/fastdialer"
 	"github.com/khulnasoft-lab/gologger"
-	errorutil "github.com/khulnasoft-lab/utils/errors"
-	iputil "github.com/khulnasoft-lab/utils/ip"
-	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls/ja3"
+	"github.com/khulnasoft-lab/utils/conn/connpool"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	"github.com/rs/xid"
 	"github.com/zmap/zcrypto/encoding/asn1"
 	"github.com/zmap/zcrypto/tls"
@@ -183,9 +185,35 @@ func (c *Client) ConnectWithOptions(hostname, ip, port string, options clients.C
 // EnumerateCiphers enumerate target with ciphers supported by ztls
 func (c *Client) EnumerateCiphers(hostname, ip, port string, options clients.ConnectOptions) ([]string, error) {
 	// filter ciphers based on given seclevel
-	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel)
+	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel...)
 
 	enumeratedCiphers := []string{}
+
+	// get network address
+	var address string
+	if iputil.IsIP(ip) && (c.options.ScanAllIPs || len(c.options.IPVersion) > 0) {
+		address = net.JoinHostPort(ip, port)
+	} else {
+		address = net.JoinHostPort(hostname, port)
+	}
+
+	threads := c.options.CipherConcurrency
+	if len(toEnumerate) < threads {
+		threads = len(toEnumerate)
+	}
+
+	// setup connection pool
+	pool, err := connpool.NewOneTimePool(context.Background(), address, threads)
+	if err != nil {
+		return enumeratedCiphers, errorutil.NewWithErr(err).Msgf("failed to setup connection pool")
+	}
+	pool.Dialer = c.dialer
+	go func() {
+		if err := pool.Run(); err != nil && !errors.Is(err, context.Canceled) {
+			gologger.Error().Msgf("tlsx: ztls: failed to run connection pool: %v", err)
+		}
+	}()
+	defer pool.Close()
 
 	// create ztls base config
 	baseCfg, err := c.getConfig(hostname, ip, port, options)
@@ -195,7 +223,7 @@ func (c *Client) EnumerateCiphers(hostname, ip, port string, options clients.Con
 	gologger.Debug().Label("ztls").Msgf("Starting cipher enumeration with %v ciphers in %v", len(toEnumerate), options.VersionTLS)
 
 	for _, v := range toEnumerate {
-		baseConn, err := clients.GetConn(context.TODO(), hostname, ip, port, c.options)
+		baseConn, err := pool.Acquire(context.Background())
 		if err != nil {
 			return enumeratedCiphers, errorutil.NewWithErr(err).WithTag("ztls")
 		}

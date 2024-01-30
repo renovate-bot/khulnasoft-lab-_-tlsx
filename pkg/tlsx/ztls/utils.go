@@ -1,8 +1,8 @@
 package ztls
 
 import (
-	errorutil "github.com/khulnasoft-lab/utils/errors"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 	"github.com/zmap/zcrypto/tls"
 	"github.com/zmap/zcrypto/x509"
 )
@@ -62,6 +62,9 @@ func ConvertCertificateToResponse(options *clients.Options, hostname string, cer
 			SHA256: clients.SHA256Fingerprint(cert.Raw),
 		},
 		Serial: clients.FormatToSerialNumber(cert.SerialNumber),
+	}
+	if options.DisplayDns {
+		response.Domains = clients.GetUniqueDomainsFromCert(response)
 	}
 	if options.Cert {
 		response.Certificate = clients.PemEncode(cert.Raw)

@@ -4,12 +4,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/khulnasoft-lab/gologger"
-	errorutils "github.com/khulnasoft-lab/utils/errors"
 	"github.com/khulnasoft-lab/goflags"
+	"github.com/khulnasoft-lab/gologger"
 	"github.com/khulnasoft-lab/tlsx/internal/runner"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
 )
 
 var (
@@ -80,7 +80,7 @@ func readFlags() error {
 		flagSet.BoolVarP(&options.ProbeStatus, "probe-status", "tps", false, "display tls probe status"),
 		flagSet.BoolVarP(&options.TlsVersionsEnum, "version-enum", "ve", false, "enumerate and display supported tls versions"),
 		flagSet.BoolVarP(&options.TlsCiphersEnum, "cipher-enum", "ce", false, "enumerate and display supported cipher"),
-		flagSet.EnumVarP(&options.TLsCipherLevel, "cipher-type", "ct", goflags.EnumVariable(0), "ciphers types to enumerate (all/secure/insecure/weak)", goflags.AllowdTypes{
+		flagSet.EnumSliceVarP(&options.TLsCipherLevel, "cipher-type", "ct", []goflags.EnumVariable{goflags.EnumVariable(0)}, "ciphers types to enumerate. possible values: all/secure/insecure/weak (comma-separated)", goflags.AllowdTypes{
 			"all":      goflags.EnumVariable(clients.All),
 			"weak":     goflags.EnumVariable(clients.Weak),
 			"insecure": goflags.EnumVariable(clients.Insecure),
@@ -118,6 +118,7 @@ func readFlags() error {
 
 	flagSet.CreateGroup("optimizations", "Optimizations",
 		flagSet.IntVarP(&options.Concurrency, "concurrency", "c", 300, "number of concurrent threads to process"),
+		flagSet.IntVarP(&options.CipherConcurrency, "cipher-concurrency", "cec", 10, "cipher enum concurrency for each target"),
 		flagSet.IntVar(&options.Timeout, "timeout", 5, "tls connection timeout in seconds"),
 		flagSet.IntVar(&options.Retries, "retry", 3, "number of retries to perform for failures"),
 		flagSet.StringVar(&options.Delay, "delay", "", "duration to wait between each connection per thread (eg: 200ms, 1s)"),
@@ -131,6 +132,7 @@ func readFlags() error {
 	flagSet.CreateGroup("output", "Output",
 		flagSet.StringVarP(&options.OutputFile, "output", "o", "", "file to write output to"),
 		flagSet.BoolVarP(&options.JSON, "json", "j", false, "display json format output"),
+		flagSet.BoolVar(&options.DisplayDns, "dns", false, "display unique hostname from SSL certificate response"),
 		flagSet.BoolVarP(&options.RespOnly, "resp-only", "ro", false, "display tls response only"),
 		flagSet.BoolVar(&options.Silent, "silent", false, "display silent output"),
 		flagSet.BoolVarP(&options.NoColor, "no-color", "nc", false, "disable colors in cli output"),

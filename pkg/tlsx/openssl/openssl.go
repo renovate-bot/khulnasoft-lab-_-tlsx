@@ -9,11 +9,11 @@ import (
 
 	"github.com/khulnasoft-lab/fastdialer/fastdialer"
 	"github.com/khulnasoft-lab/gologger"
+	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
+	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	errorutils "github.com/khulnasoft-lab/utils/errors"
 	iputil "github.com/khulnasoft-lab/utils/ip"
 	stringsutil "github.com/khulnasoft-lab/utils/strings"
-	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
-	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 )
 
 // Client is a TLS grabbing client using crypto/tls
@@ -104,7 +104,7 @@ func (c *Client) ConnectWithOptions(hostname, ip, port string, options clients.C
 // EnumerateCiphers enumerates all supported ciphers of openssl on target
 func (c *Client) EnumerateCiphers(hostname, ip, port string, options clients.ConnectOptions) ([]string, error) {
 	// filter ciphers based on given seclevel
-	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel)
+	toEnumerate := clients.GetCiphersWithLevel(AllCiphersNames, options.CipherLevel...)
 
 	enumeratedCiphers := []string{}
 

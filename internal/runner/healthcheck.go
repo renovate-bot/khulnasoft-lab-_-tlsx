@@ -6,11 +6,11 @@ import (
 	"runtime"
 	"strings"
 
-	fileutil "github.com/khulnasoft-lab/utils/file"
 	"github.com/khulnasoft-lab/goflags"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/tls"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls"
+	fileutil "github.com/khulnasoft-lab/utils/file"
 )
 
 func DoHealthCheck(flagSet *goflags.FlagSet) string {

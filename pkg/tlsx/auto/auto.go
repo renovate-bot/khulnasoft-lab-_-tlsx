@@ -5,13 +5,13 @@ package auto
 import (
 	"sync"
 
-	errorutils "github.com/khulnasoft-lab/utils/errors"
-	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	"github.com/khulnasoft-lab/tlsx/pkg/output/stats"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/tls"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls"
+	errorutils "github.com/khulnasoft-lab/utils/errors"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	"go.uber.org/multierr"
 )
 

@@ -24,8 +24,8 @@ import (
 	"github.com/khulnasoft-lab/goflags"
 	"github.com/khulnasoft-lab/gologger"
 	"github.com/khulnasoft-lab/retryablehttp-go"
-	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	"github.com/khulnasoft-lab/tlsx/assets"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	ztls "github.com/zmap/zcrypto/tls"
 )
 
@@ -62,6 +62,8 @@ type Options struct {
 	Version bool
 	// JSON enables display of JSON output
 	JSON bool
+	// DisplayDns enables display of unique hostname from SSL certificate response
+	DisplayDns bool
 	// TLSChain enables printing TLS chain information to output
 	TLSChain bool
 	// Deprecated: AllCiphers exists for historical compatibility and should not be used
@@ -144,7 +146,7 @@ type Options struct {
 	// TlsCiphersEnum enumerates supported ciphers per TLS protocol
 	TlsCiphersEnum bool
 	// TLSCipherSecLevel
-	TLsCipherLevel string
+	TLsCipherLevel []string
 	// ClientHello include client hello (only ztls)
 	ClientHello bool
 	// ServerHello include server hello (only ztls)
@@ -153,6 +155,8 @@ type Options struct {
 	HealthCheck bool
 	// DisableUpdateCheck disables checking update
 	DisableUpdateCheck bool
+	// CipherConcurrency
+	CipherConcurrency int
 
 	// Fastdialer is a fastdialer dialer instance
 	Fastdialer *fastdialer.Dialer
@@ -267,6 +271,8 @@ type CertificateResponse struct {
 	SubjectOrg []string `json:"subject_org,omitempty"`
 	// SubjectAN is a list of Subject Alternative Names for the certificate
 	SubjectAN []string `json:"subject_an,omitempty"`
+	// Domains is list of  deduplicated subject_cn + subject_an
+	Domains []string `json:"domains,omitempty"`
 	//Serial is the certificate serial number
 	Serial string `json:"serial,omitempty"`
 	// IssuerDN is the distinguished name for cert
@@ -382,7 +388,7 @@ func IsMisMatchedCert(host string, alternativeNames []string) bool {
 
 // IsTLSRevoked returns true if the certificate has been revoked or failed to parse
 func IsTLSRevoked(options *Options, cert *x509.Certificate) bool {
-	if cert == nil {
+	if !options.Revoked || cert == nil {
 		return options.HardFail
 	}
 	// - false, false: an error was encountered while checking revocations.
@@ -471,8 +477,8 @@ type ConnectOptions struct {
 	SNI         string
 	VersionTLS  string
 	Ciphers     []string
-	CipherLevel CipherSecLevel // Only used in cipher enum mode
-	EnumMode    EnumMode       // Enumeration Mode (version or ciphers)
+	CipherLevel []CipherSecLevel // Only used in cipher enum mode
+	EnumMode    EnumMode         // Enumeration Mode (version or ciphers)
 }
 
 // ParseASN1DNSequenceWithZpkixOrDefault return the parsed value of ASN1DNSequence or a default string value

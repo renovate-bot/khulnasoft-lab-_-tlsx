@@ -43,7 +43,7 @@ A fast and configurable TLS grabber focused on TLS based **data collection and a
 
 ## Installation
 
-tlsx requires **Go 1.19** to install successfully. To install, just run the below command or download pre-compiled binary from [release page](https://github.com/khulnasoft-lab/tlsx/releases).
+tlsx requires **Go 1.21** to install successfully. To install, just run the below command or download pre-compiled binary from [release page](https://github.com/khulnasoft-lab/tlsx/releases).
 
 ```console
 go install github.com/khulnasoft-lab/tlsx/cmd/tlsx@latest
@@ -76,21 +76,21 @@ SCAN-MODE:
    -iv, -ip-version string[]  ip version to use (4, 6) (default 4)
 
 PROBES:
-   -san                 display subject alternative names
-   -cn                  display subject common names
-   -so                  display subject organization name
-   -tv, -tls-version    display used tls version
-   -cipher              display used cipher
-   -hash string         display certificate fingerprint hashes (md5,sha1,sha256)
-   -jarm                display jarm fingerprint hash
-   -ja3                 display ja3 fingerprint hash (using ztls)
-   -wc, -wildcard-cert  display host with wildcard ssl certificate
-   -tps, -probe-status  display tls probe status
-   -ve, -version-enum   enumerate and display supported tls versions
-   -ce, -cipher-enum    enumerate and display supported cipher
-   -ct, -cipher-type    ciphers types to enumerate (all/secure/insecure/weak) (default 0)
-   -ch, -client-hello   include client hello in json output (ztls mode only)
-   -sh, -server-hello   include server hello in json output (ztls mode only)
+   -san                     display subject alternative names
+   -cn                      display subject common names
+   -so                      display subject organization name
+   -tv, -tls-version        display used tls version
+   -cipher                  display used cipher
+   -hash string             display certificate fingerprint hashes (md5,sha1,sha256)
+   -jarm                    display jarm fingerprint hash
+   -ja3                     display ja3 fingerprint hash (using ztls)
+   -wc, -wildcard-cert      display host with wildcard ssl certificate
+   -tps, -probe-status      display tls probe status
+   -ve, -version-enum       enumerate and display supported tls versions
+   -ce, -cipher-enum        enumerate and display supported cipher
+   -ct, -cipher-type value  ciphers types to enumerate. possible values: all/secure/insecure/weak (comma-separated) (default all)
+   -ch, -client-hello       include client hello in json output (ztls mode only)
+   -sh, -server-hello       include server hello in json output (ztls mode only)
    -se, -serial             display certificate serial number
 
 MISCONFIGURATIONS:
@@ -118,6 +118,7 @@ CONFIGURATIONS:
 
 OPTIMIZATIONS:
    -c, -concurrency int  number of concurrent threads to process (default 300)
+   -cec, -cipher-concurrency int  cipher enum concurrency for each target (default 10)
    -timeout int          tls connection timeout in seconds (default 5)
    -retry int            number of retries to perform for failures (default 3)
    -delay string         duration to wait between each connection per thread (eg: 200ms, 1s)
@@ -129,6 +130,7 @@ UPDATE:
 OUTPUT:
    -o, -output string  file to write output to
    -j, -json           display output in jsonline format
+   -dns                display unique hostname from SSL certificate response
    -ro, -resp-only     display tls response only
    -silent             display silent output
    -nc, -no-color      disable colors in cli output

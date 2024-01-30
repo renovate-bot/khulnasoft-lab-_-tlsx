@@ -4,15 +4,14 @@ import (
 	"strconv"
 
 	"github.com/khulnasoft-lab/fastdialer/fastdialer"
-	"github.com/khulnasoft-lab/gologger"
-	errorutil "github.com/khulnasoft-lab/utils/errors"
-	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/auto"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/clients"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/jarm"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/openssl"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/tls"
 	"github.com/khulnasoft-lab/tlsx/pkg/tlsx/ztls"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
 )
 
 // Service is a service for tlsx module
@@ -115,9 +114,6 @@ func (s *Service) ConnectWithOptions(host, ip, port string, options clients.Conn
 	var supportedTlsCiphers []clients.TlsCiphers
 	if s.options.TlsCiphersEnum {
 		options.EnumMode = clients.Cipher
-		if !s.options.Silent {
-			gologger.Info().Msgf("Started TLS Cipher Enumeration using %v mode", s.options.ScanMode)
-		}
 		for _, supportedTlsVersion := range resp.VersionEnum {
 			options.VersionTLS = supportedTlsVersion
 			enumeratedTlsCiphers, _ := s.enumTlsCiphers(host, ip, port, options)
@@ -147,15 +143,18 @@ func (s *Service) enumTlsVersions(host, ip, port string, options clients.Connect
 
 func (s *Service) enumTlsCiphers(host, ip, port string, options clients.ConnectOptions) ([]string, error) {
 	options.EnumMode = clients.Cipher
-	switch s.options.TLsCipherLevel {
-	case "weak":
-		options.CipherLevel = clients.Weak
-	case "secure":
-		options.CipherLevel = clients.Secure
-	case "insecure":
-		options.CipherLevel = clients.Insecure
-	default:
-		options.CipherLevel = clients.All
+	for _, cipher := range s.options.TLsCipherLevel {
+
+		switch cipher {
+		case "weak":
+			options.CipherLevel = append(options.CipherLevel, clients.Weak)
+		case "secure":
+			options.CipherLevel = append(options.CipherLevel, clients.Secure)
+		case "insecure":
+			options.CipherLevel = append(options.CipherLevel, clients.Insecure)
+		default:
+			options.CipherLevel = append(options.CipherLevel, clients.All)
+		}
 	}
 	return s.client.EnumerateCiphers(host, ip, port, options)
 }
