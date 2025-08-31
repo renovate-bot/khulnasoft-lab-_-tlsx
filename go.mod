@@ -1,6 +1,6 @@
 module github.com/khulnasoft-lab/tlsx
 
-go 1.21
+go 1.23.0
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.1
@@ -16,8 +16,8 @@ require (
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/miekg/dns v1.1.56
 	github.com/rs/xid v1.5.0
-	github.com/stretchr/testify v1.8.4
-	github.com/zmap/zcrypto v0.0.0-20231219022726-a1f61fb1661c
+	github.com/stretchr/testify v1.10.0
+	github.com/zmap/zcrypto v0.0.0-20250830192831-dcac38cad4c0
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa
 )
@@ -71,6 +71,7 @@ require (
 	github.com/yuin/goldmark v1.5.4 // indirect
 	github.com/yuin/goldmark-emoji v1.0.1 // indirect
 	golang.org/x/oauth2 v0.13.0 // indirect
+	golang.org/x/sync v0.16.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 )
 
@@ -97,17 +98,17 @@ require (
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/ulule/deepcopier v0.0.0-20200430083143-45decc6639b6 // indirect
-	github.com/weppos/publicsuffix-go v0.30.2-0.20230730094716-a20f9abcc222 // indirect
+	github.com/weppos/publicsuffix-go v0.50.1-0.20250829105427-5340293a34a1 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	github.com/yl2chen/cidranger v1.0.2 // indirect
 	github.com/zmap/rc2 v0.0.0-20190804163417-abaa70531248 // indirect
 	go.etcd.io/bbolt v1.3.7 // indirect
-	golang.org/x/crypto v0.17.0 // indirect
-	golang.org/x/mod v0.14.0 // indirect
-	golang.org/x/net v0.18.0 // indirect
-	golang.org/x/sys v0.16.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.15.0 // indirect
+	golang.org/x/crypto v0.41.0 // indirect
+	golang.org/x/mod v0.26.0 // indirect
+	golang.org/x/net v0.43.0 // indirect
+	golang.org/x/sys v0.35.0 // indirect
+	golang.org/x/text v0.28.0 // indirect
+	golang.org/x/tools v0.35.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/djherbis/times.v1 v1.3.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
